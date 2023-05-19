@@ -7,10 +7,10 @@ import {
   Radio,
   RadioChangeEvent,
   Form,
-  message,
   Table,
   Row,
   Popconfirm,
+  Checkbox,
 } from "antd";
 import { SetStateAction, useState } from "react";
 import type { ColumnsType, TableProps } from "antd/es/table";
@@ -153,13 +153,11 @@ function FormPerson() {
       title: "key",
       dataIndex: "key",
       key: "key",
-      // render: (text) => <a>{text}</a>,
     },
     {
       title: t("firstname", { ns: ["home"] }),
       dataIndex: "firstname",
       key: "firstname",
-      sorter: (a, b) => a.firstname.length - b.firstname.length,
     },
     {
       title: t("lastname", { ns: ["home"] }),
@@ -216,13 +214,26 @@ function FormPerson() {
   ) => {
     console.log("params", pagination, filters, sorter, extra);
   };
+  const onFinish = (values: any) => {
+    console.log("Success:", values);
+  };
 
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
   return (
     <>
       <div className="container">
         <h1 style={{ margin: "16px" }}>{t("form", { ns: ["home"] })}</h1>
         <div className="form-container">
-          <Form form={form} autoComplete="off">
+          <Form
+            name="basic"
+            form={form}
+            autoComplete="off"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+          >
             <Row>
               <Form.Item
                 style={{ margin: "4px" }}
@@ -330,9 +341,12 @@ function FormPerson() {
                 style={{ margin: "2px" }}
                 label={t("passport", { ns: ["home"] })}
                 rules={[
-                  { required: true },
-                  { warningOnly: true },
-                  { type: "string" },
+                  { required: true, message: "Please input your username!" },
+                  { type: "number" },
+                  {
+                    pattern: /^[0-9]+$/,
+                    message: "Please enter only numbers!",
+                  },
                 ]}
               >
                 <Input

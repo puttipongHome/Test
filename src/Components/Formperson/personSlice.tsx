@@ -37,12 +37,11 @@ const personSlice = createSlice({
     },
     removePerson: (state, action: PayloadAction<React.Key>) => {
       state.data = state.data.filter((person) => person.key !== action.payload);
-      state.count--;
       localStorage.setItem("Mylist", JSON.stringify(state));
     },
     removeAllPersons: (state) => {
       state.data = [];
-      state.count = 0;
+      state.count = 1;
       localStorage.setItem("Mylist", JSON.stringify(state));
     },
   },
