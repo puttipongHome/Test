@@ -6,7 +6,7 @@ import {
   CaretDownOutlined,
   CaretRightOutlined,
 } from "@ant-design/icons";
-import "./Example.css";
+import "./Layout.css";
 import { useTranslation } from "react-i18next";
 
 function Example() {

@@ -10,7 +10,7 @@ function Home() {
     <>
       <div className="container">
         <div className="center">
-          <Link to="/Example">
+          <Link to="/Layout">
             <Card title={t("test1", { ns: ["home"] })}>
               {t("layout", { ns: ["home"] })}
             </Card>
