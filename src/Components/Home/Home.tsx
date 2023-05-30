@@ -8,6 +8,7 @@ import axios from "axios";
 type GetResponse = {
   text: string;
 };
+
 async function getUsers() {
   try {
     const { data } = await axios.post<GetResponse>("/api/sub", {
@@ -57,13 +58,14 @@ async function getCard() {
 }
 
 getCard();
+
 function Home() {
   const { t } = useTranslation(["home", "main"]);
   return (
     <>
       <div className="container">
         <div className="center">
-          <Link to="/Layout">
+          <Link to="/Example">
             <Card title={t("test1", { ns: ["home"] })}>
               {t("layout", { ns: ["home"] })}
             </Card>
